@@ -1,12 +1,20 @@
 package com.example.myproject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 public class HomeRestController {
+
+    @Autowired
+    private Config config;
+
+    @Autowired
+    private MyService myService;
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public Map<String,String> home() {
@@ -21,6 +29,27 @@ public class HomeRestController {
         data.put("foo","foo"+foo);
         data.put("bar","bar"+bar);
         return data;
+    }
+
+
+    @RequestMapping(value = "/yaml",method = RequestMethod.GET)
+    public List<String> yaml() {
+        return config.getServers();
+    }
+
+
+    @RequestMapping(value = "/my-test",method = RequestMethod.GET)
+    public MyTest myTest(@RequestParam  String name) {
+        return myService.findByName(name);
+    }
+
+
+    @RequestMapping(value = "/my-test",method = RequestMethod.POST)
+    public MyTest myTest(@RequestParam  String id,@RequestParam String name) {
+        MyTest myTest = new MyTest();
+        myTest.setId(id);
+        myTest.setName(name);
+        return myService.addOne(myTest);
     }
 
 }
