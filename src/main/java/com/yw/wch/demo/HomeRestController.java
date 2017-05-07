@@ -43,7 +43,7 @@ public class HomeRestController {
 
 
     @RequestMapping(value = "/my-test",method = RequestMethod.GET)
-    public MyTest myTest(@RequestParam  String name) {
+    public MyTest myTest( @RequestParam  String name) {
         return myService.findByName(name);
     }
 

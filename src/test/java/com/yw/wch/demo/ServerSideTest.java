@@ -113,4 +113,18 @@ public class ServerSideTest {
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.id").value(id));
     }
+
+
+    /**
+     * 参数校验
+     * @throws Exception
+     */
+    @Test
+    public void validateTest() throws Exception {
+        this.mockMvc.perform(get("/demo/my-test?name=a").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .andDo(print())
+                .andExpect(status().is4xxClientError())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.status").value(-1));
+    }
 }
