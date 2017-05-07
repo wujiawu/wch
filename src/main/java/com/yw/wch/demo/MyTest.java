@@ -1,4 +1,4 @@
-package com.example.myproject;
+package com.yw.wch.demo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

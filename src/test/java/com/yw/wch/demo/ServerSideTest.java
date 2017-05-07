@@ -1,4 +1,4 @@
-package com.example.myproject;
+package com.yw.wch.demo;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +41,7 @@ public class ServerSideTest {
      */
     @Test
     public void getTest() throws Exception {
-        this.mockMvc.perform(get("/").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        this.mockMvc.perform(get("/demo").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -55,7 +55,7 @@ public class ServerSideTest {
     @Test
     public void postTest() throws Exception {
 
-        MockHttpServletRequestBuilder createMessage = post("/")
+        MockHttpServletRequestBuilder createMessage = post("/demo")
                 .param("foo", "1000")
                 .param("bar", "2000");
 
@@ -74,7 +74,7 @@ public class ServerSideTest {
      */
     @Test
     public void yamlTest() throws Exception {
-        this.mockMvc.perform(get("/yaml").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        this.mockMvc.perform(get("/demo/yaml").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"));
@@ -87,7 +87,7 @@ public class ServerSideTest {
      */
     @Test
     public void jpaQueryTest() throws Exception {
-        this.mockMvc.perform(get("/my-test?name=ok").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+        this.mockMvc.perform(get("/demo/my-test?name=ok").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -103,7 +103,7 @@ public class ServerSideTest {
 
         String id = UUID.randomUUID().toString();
 
-        MockHttpServletRequestBuilder createMessage = post("/my-test")
+        MockHttpServletRequestBuilder createMessage = post("/demo/my-test")
                 .param("id", id)
                 .param("name", "2000");
 

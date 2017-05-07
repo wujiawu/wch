@@ -1,7 +1,6 @@
-package com.example.myproject;
+package com.yw.wch.demo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.Repository;
 
 /**
  * Created by wujiawu on 2017/5/5.

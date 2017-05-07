@@ -1,4 +1,4 @@
-package com.example.myproject;
+package com.yw.wch.demo;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
