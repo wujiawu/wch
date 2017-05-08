@@ -1,5 +1,8 @@
-package com.yw.wch.demo;
+package com.yw.wch.controller;
 
+import com.yw.wch.config.DemoConfig;
+import com.yw.wch.entity.Demo;
+import com.yw.wch.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,13 +15,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/demo")
-public class HomeRestController {
+public class DemoController {
 
     @Autowired
-    private Config config;
+    private DemoConfig config;
 
     @Autowired
-    private MyService myService;
+    private DemoService service;
 
     @RequestMapping(value = "",method = RequestMethod.GET)
     public Map<String,String> home() {
@@ -43,17 +46,17 @@ public class HomeRestController {
 
 
     @RequestMapping(value = "/my-test",method = RequestMethod.GET)
-    public MyTest myTest( @RequestParam  String name) {
-        return myService.findByName(name);
+    public Demo myTest(@RequestParam  String name) {
+        return service.findByName(name);
     }
 
 
     @RequestMapping(value = "/my-test",method = RequestMethod.POST)
-    public MyTest myTest(@RequestParam  String id, @RequestParam String name) {
-        MyTest myTest = new MyTest();
+    public Demo myTest(@RequestParam  String id, @RequestParam String name) {
+        Demo myTest = new Demo();
         myTest.setId(id);
         myTest.setName(name);
-        return myService.addOne(myTest);
+        return service.addOne(myTest);
     }
 
 }

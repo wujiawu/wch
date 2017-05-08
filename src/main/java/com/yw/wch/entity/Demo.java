@@ -1,4 +1,4 @@
-package com.yw.wch.demo;
+package com.yw.wch.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "mytest")
-public class MyTest implements Serializable {
+public class Demo implements Serializable {
 
     @Id
     private String id;

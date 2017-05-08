@@ -1,5 +1,7 @@
-package com.yw.wch.demo;
+package com.yw.wch.service;
 
+import com.yw.wch.dao.DemoDao;
+import com.yw.wch.entity.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,18 +15,18 @@ import javax.validation.constraints.Size;
  */
 @Service
 @Validated
-public class MyService {
+public class DemoService {
 
     @Autowired
-    private MyTestRepository myTestRepository;
+    private DemoDao dao;
 
 
-    public MyTest findByName(@Size(min = 2) String name) {
-        return myTestRepository.findByName(name);
+    public Demo findByName(@Size(min = 2) String name) {
+        return dao.findByName(name);
     }
 
     @Transactional
-    public MyTest addOne(MyTest myTest) {
-        return myTestRepository.save(myTest);
+    public Demo addOne(Demo myTest) {
+        return dao.save(myTest);
     }
 }
