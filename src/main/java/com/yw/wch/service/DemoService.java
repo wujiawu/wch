@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Size;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -26,10 +27,15 @@ public class DemoService {
 
 
     public Demo findByName(@Size(min = 2) String name) {
-//        return dao.findByName(name);
-        Map<String,Object> search = new HashMap<>();
-        search.put("EQ_name",name);
-        return dao.findOne(DynamicSpecifications.bySearchFilter(SearchFilter.parse(search).values(),Demo.class));
+        return dao.findByName(name);
+    }
+
+    /**
+     * 条件组合查询
+     * @return
+     */
+    public List<Demo> search(Map<String,Object> search){
+        return dao.findAll(DynamicSpecifications.bySearchFilter(SearchFilter.parse(search).values(),Demo.class));
     }
 
     @Transactional

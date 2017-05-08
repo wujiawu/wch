@@ -1,2 +1,2 @@
 DELETE FROM mytest;
-INSERT INTO mytest(id,name) VALUES ('123456','ok')
+INSERT INTO mytest(id,name,descr) VALUES ('123456','ok','qweasd123')
