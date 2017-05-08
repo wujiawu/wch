@@ -5,12 +5,12 @@ import com.yw.wch.core.SearchFilter;
 import com.yw.wch.dao.DemoDao;
 import com.yw.wch.entity.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Size;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,10 +31,10 @@ public class DemoService {
     }
 
     /**
-     * 条件组合查询
+     * 条件组合查询  + 排序 + 分页
      * @return
      */
-    public List<Demo> search(Map<String,Object> search){
+    public List<Demo> search(Map<String,Object> search,Pageable page){
         return dao.findAll(DynamicSpecifications.bySearchFilter(SearchFilter.parse(search).values(),Demo.class));
     }
 

@@ -8,6 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -35,13 +38,14 @@ public class ServiceTest {
     private DemoService demoService;
 
     /**
-     * 动态组合查询
+     * 动态组合查询 + 排序 + 分页
      * @throws Exception
      */
     @Test
     public void searchTest() throws Exception {
         ImmutableMap<String, Object> qs = ImmutableMap.of("EQ_name", "ok", "LIKE_descr", "asd");
-        List<Demo> demoList = demoService.search(qs);
+        Pageable pager = new PageRequest(1,20, new Sort("name desc"));
+        List<Demo> demoList = demoService.search(qs,pager);
         assert demoList.size() == 1;
     }
 
